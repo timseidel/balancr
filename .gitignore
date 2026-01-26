@@ -9,3 +9,4 @@ repomix.config.json
 bwd-R-package-codebase.xml
 .repomixignore
 docs
+inst/doc

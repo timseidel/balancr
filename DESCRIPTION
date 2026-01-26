@@ -24,5 +24,8 @@ Suggests:
     testthat,
     ggplot2,
     dplyr,
-    tidyr
+    tidyr,
+    knitr,
+    rmarkdown
 RoxygenNote: 7.3.3
+VignetteBuilder: knitr
