@@ -19,8 +19,7 @@ Encoding: UTF-8
 LazyData: true
 Imports: 
     R6,
-    jsonlite,
-    bslib (>= 0.10.0)
+    jsonlite
 Suggests: 
     testthat,
     ggplot2,
