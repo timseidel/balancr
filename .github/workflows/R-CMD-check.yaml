@@ -39,10 +39,7 @@ jobs:
           r-version: ${{ matrix.config.r }}
           http-user-agent: ${{ matrix.config.http-user-agent }}
           use-public-rspm: true
-          
-      - name: Install bslib manually
-        run: Rscript -e 'install.packages("bslib", repos = "https://cran.rstudio.com")'
-      
+
       - uses: r-lib/actions/setup-r-dependencies@v2
         with:
           extra-packages: any::rcmdcheck
