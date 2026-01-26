@@ -1,9 +1,3 @@
----
-editor_options: 
-  markdown: 
-    wrap: 72
----
-
 # bwd: Balancing Walk Design for Online Experimentation in R
 
 [![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](LICENSE)
