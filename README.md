@@ -168,7 +168,7 @@ Vignette](timseidel.github.io/bwd/docs/articles/formr_integration.html).
 
 ------------------------------------------------------------------------
 
-## 📝 Citation {#citation}
+## 📝 Citation
 
 If you use this software, please cite the original methodological paper:
 
