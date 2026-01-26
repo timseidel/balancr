@@ -9,3 +9,4 @@ bwd-R-package-codebase.xml
 ^_pkgdown\.yml$
 ^docs$
 ^pkgdown$
+^\.github$

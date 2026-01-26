@@ -2,6 +2,7 @@
 
 [![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](LICENSE)
 [![R-CMD-check](https://github.com/timseidel/bwd/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/timseidel/bwd/actions/workflows/R-CMD-check.yaml)
+[![Codecov test coverage](https://codecov.io/gh/timseidel/bwd/graph/badge.svg)](https://app.codecov.io/gh/timseidel/bwd)
 
 **`bwd`** is an R implementation of the **Balancing Walk Design**, a
 high-performance algorithm for reducing variance in randomized
