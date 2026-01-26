@@ -168,7 +168,7 @@ Vignette](https://timseidel.github.io/bwd/timseidel.github.io/bwd/docs/articles/
 
 ------------------------------------------------------------------------
 
-## 📝 Citation
+## Citation
 
 If you use this software, please cite the original methodological paper:
 
