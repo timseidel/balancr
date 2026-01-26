@@ -1,0 +1,28 @@
+Package: bwd
+Type: Package
+Title: Balancing Walk Design for Online Experimentation
+Version: 0.1.0
+Authors@R: c(
+    person("Tim Benedikt", "Seidel", email = "tim.seidel@outlook.com", role = c("aut", "cre"))
+  )
+Description: An implementation of the Balancing Walk Design (BWD) for online experimental 
+    design as described in Arbour, Dimmery, Mai and Rao (2022) <arXiv:2203.02025>.
+    The Code-Implementation is taken from the Python Package "bwd", which you can find here:
+    https://github.com/ddimmery/balancer-package
+    The package provides algorithms (BWD, BWDRandom, MultiBWD) to reduce variance 
+    in randomized experiments by maintaining covariate balance in a streaming setting.
+    To this it adds a state-agnostic way of using the algorithm in the formr-framework.
+License: Apache License (== 2.0)
+URL: https://github.com/timseidel/bwd
+BugReports: https://github.com/timseidel/bwd/issues
+Encoding: UTF-8
+LazyData: true
+Imports: 
+    R6,
+    jsonlite
+Suggests: 
+    testthat,
+    ggplot2,
+    dplyr,
+    tidyr
+RoxygenNote: 7.3.3

@@ -1,0 +1,11 @@
+^.*\.Rproj$
+^\.Rproj\.user$
+package-lock.json
+package.json
+node_modules
+repomix.config.json
+bwd-R-package-codebase.xml
+.repomixignore
+^_pkgdown\.yml$
+^docs$
+^pkgdown$

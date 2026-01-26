@@ -1,0 +1,210 @@
+---
+editor_options: 
+  markdown: 
+    wrap: 72
+---
+
+# bwd: Balancing Walk Design for Online Experimentation in R
+
+[![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](LICENSE)
+[![R-CMD-check](https://github.com/timseidel/bwd/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/timseidel/bwd/actions/workflows/R-CMD-check.yaml)
+
+**`bwd`** is an R implementation of the **Balancing Walk Design**, a
+high-performance algorithm for reducing variance in randomized
+experiments by maintaining covariate balance in a streaming (online)
+setting.
+
+This package provides two primary utilities:
+
+1\. **Core Algorithms:** A faithful port of the original Python
+`balancer` package for use in simulations and R-based applications.
+
+2\. **`formr` Integration:** A specialized wrapper designed to handle
+**stateless randomization** in the [formr](https://formr.org/) survey
+framework, allowing sophisticated covariate balancing in web surveys.
+
+------------------------------------------------------------------------
+
+## Origin & Attribution
+
+This package is a port of the Python package
+[**`balancer`**](https://github.com/ddimmery/balancer-package).
+
+-   **Original Method:** Arbour, D., Dimmery, D., Mai, T. & Rao, A.
+    (2022). [Online Balanced Experimental
+    Design](https://arxiv.org/abs/2203.02025).
+-   **Original Python Implementation:** [Drew
+    Dimmery](https://github.com/ddimmery)
+
+If you use this package in your research, please cite the original paper
+(see [Citation](#citation) below).
+
+------------------------------------------------------------------------
+
+## Installation
+
+You can install the development version from GitHub:
+
+``` r
+# install.packages("devtools")
+devtools::install_github("timseidel/bwd")
+```
+
+------------------------------------------------------------------------
+
+## Usage Scenarios
+
+This package is designed for two distinct types of researchers. Please
+choose the section that fits your use case.
+
+### Scenario A: The Simulation & Lab Researcher
+
+*You want to run simulations, test the algorithm's efficiency, or use it
+in a local R session where the "state" (memory) is preserved.*
+
+The package provides `R6` classes that mirror the Python implementation:
+`BWD`, `BWDRandom`, and `MultiBWD`.
+
+``` r
+library(bwd)
+
+# 1. Setup the Balancer
+# N: Total sample size, D: Number of covariates
+balancer <- BWD$new(N = 1000, D = 5, intercept = TRUE)
+
+# 2. Simulate a participant arriving
+# (In a real experiment, these would be the participant's actual data)
+x_new <- rnorm(5) 
+
+# 3. Assign Treatment (returns 0 or 1)
+assignment <- balancer$assign_next(x_new)
+
+print(paste("Assigned to group:", assignment))
+
+# 4. Check internal state (imbalance vector)
+print(balancer$state$w_i)
+```
+
+**Multi-Arm Support:** For experiments with more than two treatment
+groups, use `MultiBWD`:
+
+``` r
+# q: Target probabilities for 3 groups (e.g., 33% / 33% / 33%)
+multi_bal <- MultiBWD$new(N = 1000, D = 5, q = c(1/3, 1/3, 1/3))
+group_id <- multi_bal$assign_next(x_new) # Returns 0, 1, or 2
+```
+
+------------------------------------------------------------------------
+
+### Scenario B: The Survey Researcher (`formr`)
+
+*You are running a study on `formr.org`. The R session restarts for
+every user ("stateless"), making sequential randomization difficult
+because the system "forgets" the imbalance caused by previous
+participants.*
+
+The `bwd` package solves this using **History Replay**. It parses the
+database of previous results, reconstructs the mathematical state of the
+balancer, assigns the current user, and creates a serialized checkpoint
+for the next user.
+
+#### 1. Formr Setup
+
+In your `formr` spreadsheet, ensure you have: 1. Items collecting
+covariates (e.g., `age`, `gender`). 2. A `calculate` item to store the
+result (e.g., named `bwd_result`).
+
+#### 2. The R Code (inside a formr calculate block)
+
+``` r
+library(bwd)
+
+# --- 1. CONFIGURATION ---
+settings <- list(N = 2000, D = 2)
+# Map current user's answers to a numeric vector
+covariates_now <- c(intake$age_std, ifelse(intake$gender == 'f', 1, 0))
+# Define where to find these columns in the history
+history_cols   <- c("intake_age_std", "intake_gender")
+
+# --- 2. FETCH HISTORY ---
+# Retrieve the JSON state and covariates of all previous users
+past_data <- suppressMessages(
+  formr_api_results(
+    run_name = "my_run",
+    items = c("bwd_result", history_cols)
+  )
+)
+
+# --- 3. STATELESS ASSIGNMENT ---
+# The wrapper handles parsing, state reconstruction, and assignment
+result <- bwd::bwd_assign_next(
+  current_covariates = covariates_now,
+  history = past_data,
+  history_covariate_cols = history_cols,
+  bwd_settings = settings
+)
+
+# --- 4. SAVE & ACT ---
+# Save this JSON string to the database so the NEXT user can find it
+bwd_result <- result$json_result 
+
+bwd_result
+```
+
+``` r
+# Use the assignment for skip logic etc. in your formr run
+result$assignment # This returns the assigned group!
+```
+
+**Why is this robust?**
+
+-   **Checkpointing:** The package saves the full mathematical state to
+    the database (default: every 20 users).
+
+-   **Replay:** If the last 19 users didn't save a checkpoint, the
+    package re-calculates the state by replaying those 19 events in
+    order.
+
+-   **Self-Healing:** If a user drops out mid-survey, their assignment
+    remains in the history, ensuring the balance is still accounted for.
+
+You can learn more in the [Formr Integration
+Vignette](timseidel.github.io/bwd/docs/articles/formr_integration.html).
+
+------------------------------------------------------------------------
+
+## 📝 Citation {#citation}
+
+If you use this software, please cite the original methodological paper:
+
+> Arbour, D., Dimmery, D., Mai, T. & Rao, A. (2022). Online Balanced
+> Experimental Design. *Proceedings of the 39th International Conference
+> on Machine Learning*.
+
+BibTeX:
+
+``` bibtex
+@InProceedings{arbour2022online,
+  title =    {Online Balanced Experimental Design},
+  author =       {Arbour, David and Dimmery, Drew and Mai, Tung and Rao, Anup},
+  booktitle =    {Proceedings of the 39th International Conference on Machine Learning},
+  year =     {2022},
+  volume =   {162},
+  series =   {Proceedings of Machine Learning Research},
+  publisher =    {PMLR},
+  url =      {[https://proceedings.mlr.press/v162/arbour22a.html](https://proceedings.mlr.press/v162/arbour22a.html)},
+}
+```
+
+For the R implementation specifically, you may acknowledge this
+repository:
+
+> Seidel, T. (2025). bwd: An R Implementation of the Balancing Walk
+> Design. <https://github.com/timseidel/bwd>
+
+------------------------------------------------------------------------
+
+## License
+
+This project is licensed under the **Apache License 2.0**, consistent
+with the original Python implementation.
