@@ -54,3 +54,22 @@ test_that("BWDRandom reduces imbalance on average", {
 
   expect_lt(mean(bwd_norms), mean(rand_norms))
 })
+
+test_that("BWDRandom assign_all works", {
+  n <- 20
+  d <- 5
+  balancer <- BWDRandom$new(N = n, D = d)
+
+  # Create dummy data matrix
+  X <- matrix(rnorm(n * d), nrow = n, ncol = d)
+
+  # Run offline assignment
+  assignments <- balancer$assign_all(X)
+
+  # Verify output dimensions
+  expect_length(assignments, n)
+  expect_true(all(assignments %in% c(0, 1)))
+
+  # Verify internal state updated (iterations should equal N processed)
+  expect_equal(balancer$state$iterations, n)
+})

@@ -139,3 +139,100 @@ test_that("formr_wrapper sorts history by timestamp before replay", {
   expect_equal(state$iterations, 3)
   expect_equal(as.numeric(state$w_i), c(1, -1))
 })
+
+test_that("formr_wrapper: dataframe parsing and validation logic", {
+  settings <- list(N = 100, D = 2, intercept = TRUE)
+
+  # -------------------------------------------------------------------------
+  # Scenario 1: Validation Error
+  # -------------------------------------------------------------------------
+  df_input <- data.frame(id = 1, bwd_result = NA)
+  expect_error(
+    bwd_assign_next(c(1,1), history = df_input, bwd_settings = settings),
+    "must be provided"
+  )
+
+  # -------------------------------------------------------------------------
+  # Scenario 2: First Run (Missing 'bwd_result' column)
+  # -------------------------------------------------------------------------
+  df_fresh <- data.frame(age = c(25), gender = c(1))
+
+  res_fresh <- bwd_assign_next(
+    current_covariates = c(30, 0),
+    history = df_fresh,
+    history_covariate_cols = c("age", "gender"),
+    bwd_settings = settings,
+    checkpoint_interval = 1
+  )
+
+  state_json <- jsonlite::fromJSON(res_fresh$json_result)$state
+  state_obj <- jsonlite::fromJSON(state_json)
+
+  iter_count <- if("Online" %in% names(state_obj)) {
+    state_obj$Online$state$iterations
+  } else {
+    state_obj$BWD$state$iterations
+  }
+  expect_equal(iter_count, 1)
+
+  # -------------------------------------------------------------------------
+  # Scenario 3: Valid Parsing (Dataframe -> List)
+  # -------------------------------------------------------------------------
+  hist_json <- jsonlite::toJSON(list(
+    assignment = 1,
+    timestamp = 1000,
+    state = NULL
+  ), auto_unbox = TRUE)
+
+  df_valid <- data.frame(
+    bwd_result = as.character(hist_json),
+    age = 0.5,
+    gender = 0,
+    stringsAsFactors = FALSE
+  )
+
+  res_valid <- bwd_assign_next(
+    current_covariates = c(0.1, 1),
+    history = df_valid,
+    history_covariate_cols = c("age", "gender"),
+    bwd_settings = settings,
+    checkpoint_interval = 1
+  )
+
+  # Helper to robustly extract iterations from either BWD or Online
+  get_iterations <- function(res) {
+    st_json <- jsonlite::fromJSON(res$json_result)$state
+    st_obj <- jsonlite::fromJSON(st_json)
+    if ("Online" %in% names(st_obj)) {
+      return(st_obj$Online$state$iterations)
+    } else {
+      return(st_obj$BWD$state$iterations)
+    }
+  }
+
+  expect_equal(get_iterations(res_valid), 2)
+
+  # -------------------------------------------------------------------------
+  # Scenario 4: Robustness (Bad JSON / NAs)
+  # -------------------------------------------------------------------------
+  df_corrupt <- data.frame(
+    bwd_result = c(
+      NA,
+      "{BAD JSON}",
+      as.character(hist_json)
+    ),
+    age = c(1, 2, 0.5),
+    gender = c(1, 1, 0),
+    stringsAsFactors = FALSE
+  )
+
+  res_corrupt <- bwd_assign_next(
+    current_covariates = c(0.1, 1),
+    history = df_corrupt,
+    history_covariate_cols = c("age", "gender"),
+    bwd_settings = settings,
+    checkpoint_interval = 1
+  )
+
+  expect_equal(get_iterations(res_corrupt), 2)
+})
