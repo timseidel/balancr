@@ -164,7 +164,7 @@ result$assignment # This returns the assigned group!
     remains in the history, ensuring the balance is still accounted for.
 
  You can learn more in the [Formr Integration
- Vignette](timseidel.github.io/balancr/docs/articles/formr_integration.html).
+ Vignette](timseidel.github.io/balancr/docs/articles/).
 
 ------------------------------------------------------------------------
 
