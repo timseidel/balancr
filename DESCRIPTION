@@ -1,11 +1,11 @@
- Package: balancr
+Package: balancr
 Type: Package
- Title: Balancing Walk Design for Online Experimentation
+Title: Balancing Walk Design for Online Experimentation
 Version: 0.1.0
 Authors@R: c(
     person("Tim Benedikt", "Seidel", email = "tim.seidel@outlook.com", role = c("aut", "cre"))
   )
- Description: An implementation of the Balancing Walk Design (BWD) for online experimental 
+Description: An implementation of the Balancing Walk Design (BWD) for online experimental 
     design as described in Arbour, Dimmery, Mai and Rao (2022) <arXiv:2203.02025>.
     The Code-Implementation is taken from the Python Package "balancer-package",
     which you can find here: https://github.com/ddimmery/balancer-package
@@ -13,8 +13,8 @@ Authors@R: c(
     in randomized experiments by maintaining covariate balance in a streaming setting.
     To this it adds a state-agnostic way of using the algorithm in the formr-framework.
 License: Apache License (== 2.0)
- URL: https://github.com/timseidel/balancr, https://timseidel.github.io/balancr/
- BugReports: https://github.com/timseidel/balancr/issues
+URL: https://github.com/timseidel/balancr, https://timseidel.github.io/balancr/
+BugReports: https://github.com/timseidel/balancr/issues
 Encoding: UTF-8
 LazyData: true
 Imports: 

@@ -6,7 +6,7 @@ package-lock.json
 package.json
 node_modules
 repomix.config.json
-bwd-R-package-codebase.xml
+balancr-R-package-codebase.xml
 .repomixignore
 docs
 inst/doc
