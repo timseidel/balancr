@@ -23,7 +23,7 @@ To perform sequential covariate balancing in this environment, we must:
 3.  **Assign** the current user.
 4.  **Save** the new state back to the database.
 
-The `bwd` package provides a dedicated wrapper, `bwd_assign_next()`, to handle this complexity automatically.
+The `bwd-balancer` package provides a dedicated wrapper, `bwd_assign_next()`, to handle this complexity automatically.
 
 ## Prerequisites
 
@@ -40,7 +40,7 @@ Below is the standard snippet to use inside a `formr` R calculate block.
 Define your study parameters and prepare the current user's data.
 
 ```{r, eval=FALSE}
-library(bwd)
+library("balancr")
 
 # A. BWD Settings
 settings <- list(N = 2000, D = 2, intercept = TRUE)
@@ -94,7 +94,7 @@ This is what the wrapper receives. Notice that `bwd_result` contains the saved s
 Pass the data to `bwd_assign_next`. This function will parse the JSON history, replay the state if necessary, and calculate the new assignment.
 
 ```{r, eval=FALSE}
-result <- bwd::bwd_assign_next(
+ result <- balancr::bwd_assign_next(
   current_covariates = covariates,
   history = past_data,
   history_covariate_cols = history_cols,

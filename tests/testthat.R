@@ -7,6 +7,6 @@
 # * https://testthat.r-lib.org/articles/special-files.html
 
 library(testthat)
-library(bwd)
+library("balancr")
 
-test_check("bwd")
+test_check("balancr")
