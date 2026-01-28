@@ -1,11 +1,11 @@
-# bwd: Balancing Walk Design for Online Experimentation in R
+# balancr: Balancing Walk Design for Online Experimentation in R
 
-[![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://timseidel.github.io/bwd/LICENSE)
-[![R-CMD-check](https://github.com/timseidel/bwd/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/timseidel/bwd/actions/workflows/R-CMD-check.yaml)
+[![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://timseidel.github.io/balancr/LICENSE)
+[![R-CMD-check](https://github.com/timseidel/balancr/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/timseidel/balancr/actions/workflows/R-CMD-check.yaml)
 [![Codecov test
-coverage](https://codecov.io/gh/timseidel/bwd/graph/badge.svg)](https://app.codecov.io/gh/timseidel/bwd)
+coverage](https://codecov.io/gh/timseidel/balancr/graph/badge.svg)](https://app.codecov.io/gh/timseidel/balancr)
 
-**`bwd`** is an R implementation of the **Balancing Walk Design**, a
+**`balancr`** is an R implementation of the **Balancing Walk Design**, a
 high-performance algorithm for reducing variance in randomized
 experiments by maintaining covariate balance in a streaming (online)
 setting.
@@ -43,7 +43,7 @@ You can install the development version from GitHub:
 
 ``` r
 # install.packages("devtools")
-devtools::install_github("timseidel/bwd")
+ devtools::install_github("timseidel/balancr")
 ```
 
 ------------------------------------------------------------------------
@@ -62,11 +62,11 @@ The package provides `R6` classes that mirror the Python implementation:
 `BWD`, `BWDRandom`, and `MultiBWD`.
 
 ``` r
-library(bwd)
+library("balancr")
 
 # 1. Setup the Balancer
 # N: Total sample size, D: Number of covariates
-balancer <- BWD$new(N = 1000, D = 5, intercept = TRUE)
+ balancer <- BWD$new(N = 1000, D = 5, intercept = TRUE)
 
 # 2. Simulate a participant arriving
 # (In a real experiment, these would be the participant's actual data)
@@ -86,7 +86,7 @@ groups, use `MultiBWD`:
 
 ``` r
 # q: Target probabilities for 3 groups (e.g., 33% / 33% / 33%)
-multi_bal <- MultiBWD$new(N = 1000, D = 5, q = c(1/3, 1/3, 1/3))
+ multi_bal <- MultiBWD$new(N = 1000, D = 5, q = c(1/3, 1/3, 1/3))
 group_id <- multi_bal$assign_next(x_new) # Returns 0, 1, or 2
 ```
 
@@ -99,10 +99,10 @@ every user (“stateless”), making sequential randomization difficult
 because the system “forgets” the imbalance caused by previous
 participants.*
 
-The `bwd` package solves this using **History Replay**. It parses the
-database of previous results, reconstructs the mathematical state of the
-balancer, assigns the current user, and creates a serialized checkpoint
-for the next user.
+The `balancr` package solves this using **History Replay**. It parses
+the database of previous results, reconstructs the mathematical state of
+the balancer, assigns the current user, and creates a serialized
+checkpoint for the next user.
 
 #### 1. Formr Setup
 
@@ -113,7 +113,7 @@ result (e.g., named `bwd_result`).
 #### 2. The R Code (inside a formr calculate block)
 
 ``` r
-library(bwd)
+library("balancr")
 
 # --- 1. CONFIGURATION ---
 settings <- list(N = 2000, D = 2)
@@ -133,7 +133,7 @@ past_data <- suppressMessages(
 
 # --- 3. STATELESS ASSIGNMENT ---
 # The wrapper handles parsing, state reconstruction, and assignment
-result <- bwd::bwd_assign_next(
+ result <- balancr::bwd_assign_next(
   current_covariates = covariates_now,
   history = past_data,
   history_covariate_cols = history_cols,
@@ -164,7 +164,7 @@ result$assignment # This returns the assigned group!
   remains in the history, ensuring the balance is still accounted for.
 
 You can learn more in the [Formr Integration
-Vignette](https://timseidel.github.io/bwd/timseidel.github.io/bwd/docs/articles/formr_integration.md).
+Vignette](https://timseidel.github.io/balancr/timseidel.github.io/balancr/docs/articles/formr_integration.md).
 
 ------------------------------------------------------------------------
 
@@ -194,8 +194,8 @@ BibTeX:
 For the R implementation specifically, you may acknowledge this
 repository:
 
-> Seidel, T. (2025). bwd: An R Implementation of the Balancing Walk
-> Design. <https://github.com/timseidel/bwd>
+> Seidel, T. (2025). balancr: An R Implementation of the Balancing Walk
+> Design. <https://github.com/timseidel/balancr/>
 
 ------------------------------------------------------------------------
 

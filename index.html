@@ -5,14 +5,14 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Balancing Walk Design for Online Experimentation • bwd</title>
+<title>Balancing Walk Design for Online Experimentation • balancr</title>
 <script src="deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
 <script src="deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
 <link href="deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
 <script src="deps/headroom-0.11.0/headroom.min.js"></script><script src="deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="deps/search-1.0.0/fuse.min.js"></script><script src="deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="pkgdown.js"></script><meta property="og:title" content="Balancing Walk Design for Online Experimentation">
-<meta name="description" content='An implementation of the Balancing Walk Design (BWD) for online experimental design as described in Arbour, Dimmery, Mai and Rao (2022) &lt;arXiv:2203.02025&gt;. The Code-Implementation is taken from the Python Package "bwd", which you can find here: https://github.com/ddimmery/balancer-package The package provides algorithms (BWD, BWDRandom, MultiBWD) to reduce variance in randomized experiments by maintaining covariate balance in a streaming setting. To this it adds a state-agnostic way of using the algorithm in the formr-framework.'>
-<meta property="og:description" content='An implementation of the Balancing Walk Design (BWD) for online experimental design as described in Arbour, Dimmery, Mai and Rao (2022) &lt;arXiv:2203.02025&gt;. The Code-Implementation is taken from the Python Package "bwd", which you can find here: https://github.com/ddimmery/balancer-package The package provides algorithms (BWD, BWDRandom, MultiBWD) to reduce variance in randomized experiments by maintaining covariate balance in a streaming setting. To this it adds a state-agnostic way of using the algorithm in the formr-framework.'>
+<meta name="description" content='An implementation of the Balancing Walk Design (BWD) for online experimental design as described in Arbour, Dimmery, Mai and Rao (2022) &lt;arXiv:2203.02025&gt;. The Code-Implementation is taken from the Python Package "balancer-package", which you can find here: https://github.com/ddimmery/balancer-package The package provides algorithms (BWD, BWDRandom, MultiBWD) to reduce variance in randomized experiments by maintaining covariate balance in a streaming setting. To this it adds a state-agnostic way of using the algorithm in the formr-framework.'>
+<meta property="og:description" content='An implementation of the Balancing Walk Design (BWD) for online experimental design as described in Arbour, Dimmery, Mai and Rao (2022) &lt;arXiv:2203.02025&gt;. The Code-Implementation is taken from the Python Package "balancer-package", which you can find here: https://github.com/ddimmery/balancer-package The package provides algorithms (BWD, BWDRandom, MultiBWD) to reduce variance in randomized experiments by maintaining covariate balance in a streaming setting. To this it adds a state-agnostic way of using the algorithm in the formr-framework.'>
 </head>
 <body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
@@ -20,7 +20,7 @@
 
     <nav class="navbar navbar-expand-lg fixed-top bg-light" data-bs-theme="light" aria-label="Site navigation"><div class="container">
 
-    <a class="navbar-brand me-2" href="index.html">bwd</a>
+    <a class="navbar-brand me-2" href="index.html">balancr</a>
 
     <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.0</small>
 
@@ -43,7 +43,7 @@
 <li class="nav-item"><form class="form-inline" role="search">
  <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="search.json">
 </form></li>
-<li class="nav-item"><a class="external-link nav-link" href="https://github.com/timseidel/bwd/" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
+<li class="nav-item"><a class="external-link nav-link" href="https://github.com/timseidel/balancr/" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
       </ul>
 </div>
 
@@ -52,10 +52,10 @@
 </nav><div class="container template-home">
 <div class="row">
   <main id="main" class="col-md-9"><div class="section level1">
-<div class="page-header"><h1 id="bwd-balancing-walk-design-for-online-experimentation-in-r">bwd: Balancing Walk Design for Online Experimentation in R<a class="anchor" aria-label="anchor" href="#bwd-balancing-walk-design-for-online-experimentation-in-r"></a>
+<div class="page-header"><h1 id="balancr-balancing-walk-design-for-online-experimentation-in-r">balancr: Balancing Walk Design for Online Experimentation in R<a class="anchor" aria-label="anchor" href="#balancr-balancing-walk-design-for-online-experimentation-in-r"></a>
 </h1></div>
-<p><a href="LICENSE"><img src="https://img.shields.io/badge/License-Apache_2.0-blue.svg" alt="License"></a> <a href="https://github.com/timseidel/bwd/actions/workflows/R-CMD-check.yaml" class="external-link"><img src="https://github.com/timseidel/bwd/actions/workflows/R-CMD-check.yaml/badge.svg" alt="R-CMD-check"></a> <a href="https://app.codecov.io/gh/timseidel/bwd" class="external-link"><img src="https://codecov.io/gh/timseidel/bwd/graph/badge.svg" alt="Codecov test coverage"></a></p>
-<p><strong><code>bwd</code></strong> is an R implementation of the <strong>Balancing Walk Design</strong>, a high-performance algorithm for reducing variance in randomized experiments by maintaining covariate balance in a streaming (online) setting.</p>
+<p><a href="LICENSE"><img src="https://img.shields.io/badge/License-Apache_2.0-blue.svg" alt="License"></a> <a href="https://github.com/timseidel/balancr/actions/workflows/R-CMD-check.yaml" class="external-link"><img src="https://github.com/timseidel/balancr/actions/workflows/R-CMD-check.yaml/badge.svg" alt="R-CMD-check"></a> <a href="https://app.codecov.io/gh/timseidel/balancr" class="external-link"><img src="https://codecov.io/gh/timseidel/balancr/graph/badge.svg" alt="Codecov test coverage"></a></p>
+<p><strong><code>balancr</code></strong> is an R implementation of the <strong>Balancing Walk Design</strong>, a high-performance algorithm for reducing variance in randomized experiments by maintaining covariate balance in a streaming (online) setting.</p>
 <p>This package provides two primary utilities:</p>
 <p>1. <strong>Core Algorithms:</strong> A faithful port of the original Python <code>balancer</code> package for use in simulations and R-based applications.</p>
 <p>2. <strong><code>formr</code> Integration:</strong> A specialized wrapper designed to handle <strong>stateless randomization</strong> in the <a href="https://formr.org/" class="external-link">formr</a> survey framework, allowing sophisticated covariate balancing in web surveys.</p>
@@ -80,7 +80,7 @@
 <p>You can install the development version from GitHub:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># install.packages("devtools")</span></span>
-<span><span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"timseidel/bwd"</span><span class="op">)</span></span></code></pre></div>
+<span> <span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"timseidel/balancr"</span><span class="op">)</span></span></code></pre></div>
 <hr>
 </div>
 <div class="section level2">
@@ -93,11 +93,11 @@
 <p><em>You want to run simulations, test the algorithm’s efficiency, or use it in a local R session where the “state” (memory) is preserved.</em></p>
 <p>The package provides <code>R6</code> classes that mirror the Python implementation: <code>BWD</code>, <code>BWDRandom</code>, and <code>MultiBWD</code>.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/timseidel/bwd" class="external-link">bwd</a></span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/timseidel/balancr" class="external-link">"balancr"</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># 1. Setup the Balancer</span></span>
 <span><span class="co"># N: Total sample size, D: Number of covariates</span></span>
-<span><span class="va">balancer</span> <span class="op">&lt;-</span> <span class="va"><a href="reference/BWD.html">BWD</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span>N <span class="op">=</span> <span class="fl">1000</span>, D <span class="op">=</span> <span class="fl">5</span>, intercept <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span> <span class="va">balancer</span> <span class="op">&lt;-</span> <span class="va"><a href="reference/BWD.html">BWD</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span>N <span class="op">=</span> <span class="fl">1000</span>, D <span class="op">=</span> <span class="fl">5</span>, intercept <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># 2. Simulate a participant arriving</span></span>
 <span><span class="co"># (In a real experiment, these would be the participant's actual data)</span></span>
@@ -113,7 +113,7 @@
 <p><strong>Multi-Arm Support:</strong> For experiments with more than two treatment groups, use <code>MultiBWD</code>:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># q: Target probabilities for 3 groups (e.g., 33% / 33% / 33%)</span></span>
-<span><span class="va">multi_bal</span> <span class="op">&lt;-</span> <span class="va"><a href="reference/MultiBWD.html">MultiBWD</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span>N <span class="op">=</span> <span class="fl">1000</span>, D <span class="op">=</span> <span class="fl">5</span>, q <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span><span class="op">/</span><span class="fl">3</span>, <span class="fl">1</span><span class="op">/</span><span class="fl">3</span>, <span class="fl">1</span><span class="op">/</span><span class="fl">3</span><span class="op">)</span><span class="op">)</span></span>
+<span> <span class="va">multi_bal</span> <span class="op">&lt;-</span> <span class="va"><a href="reference/MultiBWD.html">MultiBWD</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span>N <span class="op">=</span> <span class="fl">1000</span>, D <span class="op">=</span> <span class="fl">5</span>, q <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span><span class="op">/</span><span class="fl">3</span>, <span class="fl">1</span><span class="op">/</span><span class="fl">3</span>, <span class="fl">1</span><span class="op">/</span><span class="fl">3</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">group_id</span> <span class="op">&lt;-</span> <span class="va">multi_bal</span><span class="op">$</span><span class="fu">assign_next</span><span class="op">(</span><span class="va">x_new</span><span class="op">)</span> <span class="co"># Returns 0, 1, or 2</span></span></code></pre></div>
 <hr>
 </div>
@@ -121,7 +121,7 @@
 <h3 id="scenario-b-the-survey-researcher-formr">Scenario B: The Survey Researcher (<code>formr</code>)<a class="anchor" aria-label="anchor" href="#scenario-b-the-survey-researcher-formr"></a>
 </h3>
 <p><em>You are running a study on <code>formr.org</code>. The R session restarts for every user (“stateless”), making sequential randomization difficult because the system “forgets” the imbalance caused by previous participants.</em></p>
-<p>The <code>bwd</code> package solves this using <strong>History Replay</strong>. It parses the database of previous results, reconstructs the mathematical state of the balancer, assigns the current user, and creates a serialized checkpoint for the next user.</p>
+<p>The <code>balancr</code> package solves this using <strong>History Replay</strong>. It parses the database of previous results, reconstructs the mathematical state of the balancer, assigns the current user, and creates a serialized checkpoint for the next user.</p>
 <div class="section level4">
 <h4 id="id_1-formr-setup">1. Formr Setup<a class="anchor" aria-label="anchor" href="#id_1-formr-setup"></a>
 </h4>
@@ -131,7 +131,7 @@
 <h4 id="id_2-the-r-code-inside-a-formr-calculate-block">2. The R Code (inside a formr calculate block)<a class="anchor" aria-label="anchor" href="#id_2-the-r-code-inside-a-formr-calculate-block"></a>
 </h4>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/timseidel/bwd" class="external-link">bwd</a></span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/timseidel/balancr" class="external-link">"balancr"</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># --- 1. CONFIGURATION ---</span></span>
 <span><span class="va">settings</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>N <span class="op">=</span> <span class="fl">2000</span>, D <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span>
@@ -151,7 +151,7 @@
 <span></span>
 <span><span class="co"># --- 3. STATELESS ASSIGNMENT ---</span></span>
 <span><span class="co"># The wrapper handles parsing, state reconstruction, and assignment</span></span>
-<span><span class="va">result</span> <span class="op">&lt;-</span> <span class="fu">bwd</span><span class="fu">::</span><span class="fu"><a href="reference/bwd_assign_next.html">bwd_assign_next</a></span><span class="op">(</span></span>
+<span> <span class="va">result</span> <span class="op">&lt;-</span> <span class="fu">balancr</span><span class="fu">::</span><span class="fu"><a href="reference/bwd_assign_next.html">bwd_assign_next</a></span><span class="op">(</span></span>
 <span>  current_covariates <span class="op">=</span> <span class="va">covariates_now</span>,</span>
 <span>  history <span class="op">=</span> <span class="va">past_data</span>,</span>
 <span>  history_covariate_cols <span class="op">=</span> <span class="va">history_cols</span>,</span>
@@ -172,7 +172,7 @@
 <li><p><strong>Replay:</strong> If the last 19 users didn’t save a checkpoint, the package re-calculates the state by replaying those 19 events in order.</p></li>
 <li><p><strong>Self-Healing:</strong> If a user drops out mid-survey, their assignment remains in the history, ensuring the balance is still accounted for.</p></li>
 </ul>
-<p>You can learn more in the <a href="timseidel.github.io/bwd/docs/articles/formr_integration.html">Formr Integration Vignette</a>.</p>
+<p>You can learn more in the <a href="timseidel.github.io/balancr/docs/articles/formr_integration.html">Formr Integration Vignette</a>.</p>
 <hr>
 </div>
 </div>
@@ -197,7 +197,7 @@
 <span id="cb6-10"><a href="#cb6-10" tabindex="-1"></a>}</span></code></pre></div>
 <p>For the R implementation specifically, you may acknowledge this repository:</p>
 <blockquote>
-<p>Seidel, T. (2025). bwd: An R Implementation of the Balancing Walk Design. <a href="https://github.com/timseidel/bwd" class="external-link uri">https://github.com/timseidel/bwd</a></p>
+<p>Seidel, T. (2025). balancr: An R Implementation of the Balancing Walk Design. <a href="https://github.com/timseidel/balancr/" class="external-link uri">https://github.com/timseidel/balancr/</a></p>
 </blockquote>
 <hr>
 </div>
@@ -210,9 +210,8 @@
   </main><aside class="col-md-3"><div class="links">
 <h2 data-toc-skip>Links</h2>
 <ul class="list-unstyled">
-<li><a href="https://cloud.r-project.org/package=bwd" class="external-link">View on CRAN</a></li>
-<li><a href="https://github.com/timseidel/bwd/" class="external-link">Browse source code</a></li>
-<li><a href="https://github.com/timseidel/bwd/issues" class="external-link">Report a bug</a></li>
+<li><a href="https://github.com/timseidel/balancr/" class="external-link">Browse source code</a></li>
+<li><a href="https://github.com/timseidel/balancr/issues" class="external-link">Report a bug</a></li>
 </ul>
 </div>
 
@@ -227,7 +226,7 @@
 <div class="citation">
 <h2 data-toc-skip>Citation</h2>
 <ul class="list-unstyled">
-<li><a href="authors.html#citation">Citing bwd</a></li>
+<li><a href="authors.html#citation">Citing balancr</a></li>
 </ul>
 </div>
 
