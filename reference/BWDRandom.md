@@ -189,6 +189,10 @@ Update the internal state of the balancer.
 
   Current iteration count.
 
+- `alpha`:
+
+  Optional. The current threshold value.
+
 ------------------------------------------------------------------------
 
 ### Method `reset()`

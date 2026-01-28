@@ -93,21 +93,39 @@ Treatment assignment.
 
 ### Method `assign_all()`
 
+Delegate assign_all to inner balancer.
+
 #### Usage
 
     Online$assign_all(X)
+
+#### Arguments
+
+- `X`:
+
+  Matrix of covariate profiles.
 
 ------------------------------------------------------------------------
 
 ### Method `update_state()`
 
+Delegate update_state to inner balancer.
+
 #### Usage
 
     Online$update_state(...)
 
+#### Arguments
+
+- `...`:
+
+  State arguments.
+
 ------------------------------------------------------------------------
 
 ### Method `reset()`
+
+Delegate reset to inner balancer.
 
 #### Usage
 
@@ -117,25 +135,57 @@ Treatment assignment.
 
 ### Method `process_x()`
 
+Delegate process_x to inner balancer.
+
 #### Usage
 
     Online$process_x(x)
+
+#### Arguments
+
+- `x`:
+
+  Covariate vector.
 
 ------------------------------------------------------------------------
 
 ### Method `update_imbalance()`
 
+Delegate update_imbalance to inner balancer.
+
 #### Usage
 
     Online$update_imbalance(x, a)
+
+#### Arguments
+
+- `x`:
+
+  Processed covariate vector.
+
+- `a`:
+
+  Assignment.
 
 ------------------------------------------------------------------------
 
 ### Method `update_path()`
 
+Delegate update_path to inner balancer.
+
 #### Usage
 
     Online$update_path(x, a)
+
+#### Arguments
+
+- `x`:
+
+  Covariate vector.
+
+- `a`:
+
+  Assignment.
 
 ------------------------------------------------------------------------
 

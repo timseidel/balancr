@@ -9,7 +9,7 @@ each node balances between the treatment groups on the left and right."></head><
 
     <a class="navbar-brand me-2" href="../index.html">balancr</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.1</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -21,6 +21,7 @@ each node balances between the treatment groups on the left and right."></head><
 <li class="nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
   <ul class="dropdown-menu" aria-labelledby="dropdown-articles"><li><a class="dropdown-item" href="../articles/formr_integration.html">Integration with formr (Stateless Deployment)</a></li>
+    <li><a class="dropdown-item" href="../articles/validation.html">Validation: Stateless vs Stateful Implementation</a></li>
   </ul></li>
       </ul><ul class="navbar-nav"><li class="nav-item"><form class="form-inline" role="search">
  <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="../search.json"></form></li>
@@ -123,6 +124,34 @@ each node balances between the treatment groups on the left and right.</p>
 <p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va"><a href="../reference/MultiBWD.html">MultiBWD</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span><span class="va">N</span>, <span class="va">D</span>, delta <span class="op">=</span> <span class="fl">0.05</span>, q <span class="op">=</span> <span class="fl">0.5</span>, intercept <span class="op">=</span> <span class="cn">TRUE</span>, phi <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></code></pre></div><p></p></div>
 </div>
 
+<div class="section">
+<h4 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h4>
+<p></p><div class="arguments"><dl><dt><code>N</code></dt>
+<dd><p>Total number of points.</p></dd>
+
+
+<dt><code>D</code></dt>
+<dd><p>Dimension of the data.</p></dd>
+
+
+<dt><code>delta</code></dt>
+<dd><p>Probability of failure (default 0.05).</p></dd>
+
+
+<dt><code>q</code></dt>
+<dd><p>Target marginal probabilities. Can be a scalar (0.5 implied for 2 groups) or vector.</p></dd>
+
+
+<dt><code>intercept</code></dt>
+<dd><p>Whether to add an intercept term (default TRUE).</p></dd>
+
+
+<dt><code>phi</code></dt>
+<dd><p>Robustness parameter (default 1).</p></dd>
+
+
+</dl><p></p></div>
+</div>
 
 </div><p></p><hr><a id="method-MultiBWD-build_tree"></a><div class="section">
 <h3 id="method-build-tree-">Method <code>build_tree()</code><a class="anchor" aria-label="anchor" href="#method-build-tree-"></a></h3>
@@ -140,7 +169,7 @@ each node balances between the treatment groups on the left and right.</p>
 </div>
 
 <div class="section">
-<h4 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h4>
+<h4 id="arguments-1">Arguments<a class="anchor" aria-label="anchor" href="#arguments-1"></a></h4>
 <p></p><div class="arguments"><dl><dt><code>x</code></dt>
 <dd><p>Covariate profile vector.</p></dd>
 
@@ -159,6 +188,18 @@ each node balances between the treatment groups on the left and right.</p>
 <p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">MultiBWD</span><span class="op">$</span><span class="fu">assign_all</span><span class="op">(</span><span class="va">X</span><span class="op">)</span></span></code></pre></div><p></p></div>
 </div>
 
+<div class="section">
+<h4 id="arguments-2">Arguments<a class="anchor" aria-label="anchor" href="#arguments-2"></a></h4>
+<p></p><div class="arguments"><dl><dt><code>X</code></dt>
+<dd><p>Matrix of covariate profiles (N x D).</p></dd>
+
+
+</dl><p></p></div>
+</div>
+<div class="section">
+<h4 id="returns-1">Returns<a class="anchor" aria-label="anchor" href="#returns-1"></a></h4>
+<p>Vector of treatment assignments.</p>
+</div>
 
 </div><p></p><hr><a id="method-MultiBWD-update_state"></a><div class="section">
 <h3 id="method-update-state-">Method <code>update_state()</code><a class="anchor" aria-label="anchor" href="#method-update-state-"></a></h3>
@@ -167,6 +208,14 @@ each node balances between the treatment groups on the left and right.</p>
 <p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">MultiBWD</span><span class="op">$</span><span class="fu">update_state</span><span class="op">(</span><span class="va">...</span><span class="op">)</span></span></code></pre></div><p></p></div>
 </div>
 
+<div class="section">
+<h4 id="arguments-3">Arguments<a class="anchor" aria-label="anchor" href="#arguments-3"></a></h4>
+<p></p><div class="arguments"><dl><dt><code>...</code></dt>
+<dd><p>Named arguments mapping node indices to state lists.</p></dd>
+
+
+</dl><p></p></div>
+</div>
 
 </div><p></p><hr><a id="method-MultiBWD-update_path"></a><div class="section">
 <h3 id="method-update-path-">Method <code>update_path()</code><a class="anchor" aria-label="anchor" href="#method-update-path-"></a></h3>
@@ -176,7 +225,7 @@ each node balances between the treatment groups on the left and right.</p>
 </div>
 
 <div class="section">
-<h4 id="arguments-1">Arguments<a class="anchor" aria-label="anchor" href="#arguments-1"></a></h4>
+<h4 id="arguments-4">Arguments<a class="anchor" aria-label="anchor" href="#arguments-4"></a></h4>
 <p></p><div class="arguments"><dl><dt><code>x</code></dt>
 <dd><p>Covariate vector.</p></dd>
 
@@ -195,6 +244,18 @@ each node balances between the treatment groups on the left and right.</p>
 <p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">MultiBWD</span><span class="op">$</span><span class="fu">replay_assignment</span><span class="op">(</span><span class="va">x</span>, <span class="va">final_assignment</span><span class="op">)</span></span></code></pre></div><p></p></div>
 </div>
 
+<div class="section">
+<h4 id="arguments-5">Arguments<a class="anchor" aria-label="anchor" href="#arguments-5"></a></h4>
+<p></p><div class="arguments"><dl><dt><code>x</code></dt>
+<dd><p>Covariate profile vector.</p></dd>
+
+
+<dt><code>final_assignment</code></dt>
+<dd><p>The treatment assignment (integer).</p></dd>
+
+
+</dl><p></p></div>
+</div>
 
 </div><p></p><hr><a id="method-MultiBWD-get_path_for_assignment"></a><div class="section">
 <h3 id="method-get-path-for-assignment-">Method <code>get_path_for_assignment()</code><a class="anchor" aria-label="anchor" href="#method-get-path-for-assignment-"></a></h3>
@@ -204,7 +265,7 @@ each node balances between the treatment groups on the left and right.</p>
 </div>
 
 <div class="section">
-<h4 id="arguments-2">Arguments<a class="anchor" aria-label="anchor" href="#arguments-2"></a></h4>
+<h4 id="arguments-6">Arguments<a class="anchor" aria-label="anchor" href="#arguments-6"></a></h4>
 <p></p><div class="arguments"><dl><dt><code>target_class</code></dt>
 <dd><p>Integer class label.</p></dd>
 
@@ -228,7 +289,7 @@ each node balances between the treatment groups on the left and right.</p>
 </div>
 
 <div class="section">
-<h4 id="arguments-3">Arguments<a class="anchor" aria-label="anchor" href="#arguments-3"></a></h4>
+<h4 id="arguments-7">Arguments<a class="anchor" aria-label="anchor" href="#arguments-7"></a></h4>
 <p></p><div class="arguments"><dl><dt><code>deep</code></dt>
 <dd><p>Whether to make a deep clone.</p></dd>
 

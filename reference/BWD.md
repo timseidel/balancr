@@ -203,6 +203,16 @@ Replay a historical assignment, respecting Restart logic.
 
     BWD$replay_assignment(x, assignment)
 
+#### Arguments
+
+- `x`:
+
+  Covariate profile vector.
+
+- `assignment`:
+
+  The treatment assignment (0 or 1).
+
 ------------------------------------------------------------------------
 
 ### Method `assign_all()`
@@ -242,6 +252,10 @@ Update the internal state of the balancer.
 - `iterations`:
 
   Current iteration count.
+
+- `alpha`:
+
+  Optional. The current threshold value.
 
 ------------------------------------------------------------------------
 

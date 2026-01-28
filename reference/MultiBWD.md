@@ -89,6 +89,33 @@ Initialize the MultiBWD balancer.
 
     MultiBWD$new(N, D, delta = 0.05, q = 0.5, intercept = TRUE, phi = 1)
 
+#### Arguments
+
+- `N`:
+
+  Total number of points.
+
+- `D`:
+
+  Dimension of the data.
+
+- `delta`:
+
+  Probability of failure (default 0.05).
+
+- `q`:
+
+  Target marginal probabilities. Can be a scalar (0.5 implied for 2
+  groups) or vector.
+
+- `intercept`:
+
+  Whether to add an intercept term (default TRUE).
+
+- `phi`:
+
+  Robustness parameter (default 1).
+
 ------------------------------------------------------------------------
 
 ### Method `build_tree()`
@@ -129,6 +156,16 @@ Assign all points in a matrix (offline setting).
 
     MultiBWD$assign_all(X)
 
+#### Arguments
+
+- `X`:
+
+  Matrix of covariate profiles (N x D).
+
+#### Returns
+
+Vector of treatment assignments.
+
 ------------------------------------------------------------------------
 
 ### Method `update_state()`
@@ -138,6 +175,12 @@ Update the internal state of the balancer.
 #### Usage
 
     MultiBWD$update_state(...)
+
+#### Arguments
+
+- `...`:
+
+  Named arguments mapping node indices to state lists.
 
 ------------------------------------------------------------------------
 
@@ -168,6 +211,16 @@ Replay assignment through the tree.
 #### Usage
 
     MultiBWD$replay_assignment(x, final_assignment)
+
+#### Arguments
+
+- `x`:
+
+  Covariate profile vector.
+
+- `final_assignment`:
+
+  The treatment assignment (integer).
 
 ------------------------------------------------------------------------
 
