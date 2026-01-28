@@ -65,21 +65,42 @@ Online <- R6::R6Class("Online",
                           })
                         },
 
-                        # Delegate these methods to the inner balancer
+                        #' @description
+                        #' Delegate assign_all to inner balancer.
+                        #' @param X Matrix of covariate profiles.
                         assign_all = function(X) self$balancer$assign_all(X),
+
+                        #' @description
+                        #' Delegate update_state to inner balancer.
+                        #' @param ... State arguments.
                         update_state = function(...) self$balancer$update_state(...),
+
+                        #' @description
+                        #' Delegate reset to inner balancer.
                         reset = function() self$balancer$reset(),
 
-                        # Required for manual replay logic in formr_wrapper
+                        #' @description
+                        #' Delegate process_x to inner balancer.
+                        #' @param x Covariate vector.
                         process_x = function(x) self$balancer$process_x(x),
+
+                        #' @description
+                        #' Delegate update_imbalance to inner balancer.
+                        #' @param x Processed covariate vector.
+                        #' @param a Assignment.
                         update_imbalance = function(x, a) self$balancer$update_imbalance(x, a),
+
+                        #' @description
+                        #' Delegate update_path to inner balancer.
+                        #' @param x Covariate vector.
+                        #' @param a Assignment.
                         update_path = function(x, a) self$balancer$update_path(x, a)
                       ),
 
                       active = list(
                         #' @field definition Dictionary of definition parameters.
                         definition = function() {
-                          # CRITICAL CHANGE: We save 'cls' as a string name, not the object
+                          # We save 'cls' as a string name, not the object
                           c(list(cls = self$cls_name), self$balancer$definition)
                         },
                         #' @field state Dictionary of current state.

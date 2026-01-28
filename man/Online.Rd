@@ -84,24 +84,41 @@ Treatment assignment.
 \if{html}{\out{<a id="method-Online-assign_all"></a>}}
 \if{latex}{\out{\hypertarget{method-Online-assign_all}{}}}
 \subsection{Method \code{assign_all()}}{
+Delegate assign_all to inner balancer.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Online$assign_all(X)}\if{html}{\out{</div>}}
 }
 
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{X}}{Matrix of covariate profiles.}
+}
+\if{html}{\out{</div>}}
+}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-Online-update_state"></a>}}
 \if{latex}{\out{\hypertarget{method-Online-update_state}{}}}
 \subsection{Method \code{update_state()}}{
+Delegate update_state to inner balancer.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Online$update_state(...)}\if{html}{\out{</div>}}
 }
 
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{...}}{State arguments.}
+}
+\if{html}{\out{</div>}}
+}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-Online-reset"></a>}}
 \if{latex}{\out{\hypertarget{method-Online-reset}{}}}
 \subsection{Method \code{reset()}}{
+Delegate reset to inner balancer.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Online$reset()}\if{html}{\out{</div>}}
 }
@@ -111,28 +128,56 @@ Treatment assignment.
 \if{html}{\out{<a id="method-Online-process_x"></a>}}
 \if{latex}{\out{\hypertarget{method-Online-process_x}{}}}
 \subsection{Method \code{process_x()}}{
+Delegate process_x to inner balancer.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Online$process_x(x)}\if{html}{\out{</div>}}
 }
 
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{x}}{Covariate vector.}
+}
+\if{html}{\out{</div>}}
+}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-Online-update_imbalance"></a>}}
 \if{latex}{\out{\hypertarget{method-Online-update_imbalance}{}}}
 \subsection{Method \code{update_imbalance()}}{
+Delegate update_imbalance to inner balancer.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Online$update_imbalance(x, a)}\if{html}{\out{</div>}}
 }
 
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{x}}{Processed covariate vector.}
+
+\item{\code{a}}{Assignment.}
+}
+\if{html}{\out{</div>}}
+}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-Online-update_path"></a>}}
 \if{latex}{\out{\hypertarget{method-Online-update_path}{}}}
 \subsection{Method \code{update_path()}}{
+Delegate update_path to inner balancer.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Online$update_path(x, a)}\if{html}{\out{</div>}}
 }
 
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{x}}{Covariate vector.}
+
+\item{\code{a}}{Assignment.}
+}
+\if{html}{\out{</div>}}
+}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-Online-clone"></a>}}

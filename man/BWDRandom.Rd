@@ -154,6 +154,8 @@ Update the internal state of the balancer.
 \item{\code{w_i}}{Current imbalance vector.}
 
 \item{\code{iterations}}{Current iteration count.}
+
+\item{\code{alpha}}{Optional. The current threshold value.}
 }
 \if{html}{\out{</div>}}
 }

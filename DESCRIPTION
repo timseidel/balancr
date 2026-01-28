@@ -1,7 +1,7 @@
 Package: balancr
 Type: Package
 Title: Balancing Walk Design for Online Experimentation
-Version: 0.1.0
+Version: 0.1.1
 Authors@R: c(
     person("Tim Benedikt", "Seidel", email = "tim.seidel@outlook.com", role = c("aut", "cre"))
   )
@@ -27,6 +27,7 @@ Suggests:
     tidyr,
     knitr,
     rmarkdown,
-    covr
+    covr,
+    bslib
 RoxygenNote: 7.3.3
 VignetteBuilder: knitr

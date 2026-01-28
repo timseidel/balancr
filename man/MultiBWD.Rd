@@ -65,6 +65,23 @@ Initialize the MultiBWD balancer.
 \if{html}{\out{<div class="r">}}\preformatted{MultiBWD$new(N, D, delta = 0.05, q = 0.5, intercept = TRUE, phi = 1)}\if{html}{\out{</div>}}
 }
 
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{N}}{Total number of points.}
+
+\item{\code{D}}{Dimension of the data.}
+
+\item{\code{delta}}{Probability of failure (default 0.05).}
+
+\item{\code{q}}{Target marginal probabilities. Can be a scalar (0.5 implied for 2 groups) or vector.}
+
+\item{\code{intercept}}{Whether to add an intercept term (default TRUE).}
+
+\item{\code{phi}}{Robustness parameter (default 1).}
+}
+\if{html}{\out{</div>}}
+}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-MultiBWD-build_tree"></a>}}
@@ -105,6 +122,16 @@ Assign all points in a matrix (offline setting).
 \if{html}{\out{<div class="r">}}\preformatted{MultiBWD$assign_all(X)}\if{html}{\out{</div>}}
 }
 
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{X}}{Matrix of covariate profiles (N x D).}
+}
+\if{html}{\out{</div>}}
+}
+\subsection{Returns}{
+Vector of treatment assignments.
+}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-MultiBWD-update_state"></a>}}
@@ -115,6 +142,13 @@ Update the internal state of the balancer.
 \if{html}{\out{<div class="r">}}\preformatted{MultiBWD$update_state(...)}\if{html}{\out{</div>}}
 }
 
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{...}}{Named arguments mapping node indices to state lists.}
+}
+\if{html}{\out{</div>}}
+}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-MultiBWD-update_path"></a>}}
@@ -144,6 +178,15 @@ Replay assignment through the tree.
 \if{html}{\out{<div class="r">}}\preformatted{MultiBWD$replay_assignment(x, final_assignment)}\if{html}{\out{</div>}}
 }
 
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{x}}{Covariate profile vector.}
+
+\item{\code{final_assignment}}{The treatment assignment (integer).}
+}
+\if{html}{\out{</div>}}
+}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-MultiBWD-get_path_for_assignment"></a>}}

@@ -110,6 +110,8 @@ BWD <- R6::R6Class("BWD",
 
                      #' @description
                      #' Replay a historical assignment, respecting Restart logic.
+                     #' @param x Covariate profile vector.
+                     #' @param assignment The treatment assignment (0 or 1).
                      replay_assignment = function(x, assignment) {
                        x_proc <- self$process_x(x)
                        dot_prod <- sum(x_proc * self$w_i)
@@ -140,6 +142,7 @@ BWD <- R6::R6Class("BWD",
                      #' Update the internal state of the balancer.
                      #' @param w_i Current imbalance vector.
                      #' @param iterations Current iteration count.
+                     #' @param alpha Optional. The current threshold value.
                      update_state = function(w_i, iterations, alpha = NULL) {
                        self$w_i <- as.numeric(w_i)
                        self$iterations <- iterations

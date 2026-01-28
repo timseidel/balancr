@@ -169,6 +169,15 @@ Replay a historical assignment, respecting Restart logic.
 \if{html}{\out{<div class="r">}}\preformatted{BWD$replay_assignment(x, assignment)}\if{html}{\out{</div>}}
 }
 
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{x}}{Covariate profile vector.}
+
+\item{\code{assignment}}{The treatment assignment (0 or 1).}
+}
+\if{html}{\out{</div>}}
+}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-BWD-assign_all"></a>}}
@@ -205,6 +214,8 @@ Update the internal state of the balancer.
 \item{\code{w_i}}{Current imbalance vector.}
 
 \item{\code{iterations}}{Current iteration count.}
+
+\item{\code{alpha}}{Optional. The current threshold value.}
 }
 \if{html}{\out{</div>}}
 }

@@ -27,8 +27,6 @@ serialize_bwd <- function(obj) {
 
 #' @rdname serialization
 #' @export
-#' @rdname serialization
-#' @export
 deserialize_bwd <- function(json_str) {
   defs <- jsonlite::fromJSON(json_str)
   cls_name <- names(defs)[1]

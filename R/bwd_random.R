@@ -72,7 +72,6 @@ BWDRandom <- R6::R6Class("BWDRandom",
 
                              dot_prod <- sum(x * self$w_i)
 
-                             # FIX: Strictly follow Python logic.
                              # If alpha is -1 (random mode), abs(dot) > -1 is ALWAYS true.
                              if (abs(dot_prod) > self$alpha) {
                                self$w_i <- numeric(self$D)
@@ -113,6 +112,7 @@ BWDRandom <- R6::R6Class("BWDRandom",
                            #' Update the internal state of the balancer.
                            #' @param w_i Current imbalance vector.
                            #' @param iterations Current iteration count.
+                           #' @param alpha Optional. The current threshold value.
                            update_state = function(w_i, iterations, alpha = NULL) {
                              self$w_i <- as.numeric(w_i)
                              self$iterations <- iterations

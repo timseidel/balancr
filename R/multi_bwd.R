@@ -31,6 +31,12 @@ MultiBWD <- R6::R6Class("MultiBWD",
 
                           #' @description
                           #' Initialize the MultiBWD balancer.
+                          #' @param N Total number of points.
+                          #' @param D Dimension of the data.
+                          #' @param delta Probability of failure (default 0.05).
+                          #' @param q Target marginal probabilities. Can be a scalar (0.5 implied for 2 groups) or vector.
+                          #' @param intercept Whether to add an intercept term (default TRUE).
+                          #' @param phi Robustness parameter (default 1).
                           initialize = function(N, D, delta = 0.05, q = 0.5, intercept = TRUE, phi = 1.0) {
                             self$N <- N
                             self$D <- D
@@ -135,6 +141,8 @@ MultiBWD <- R6::R6Class("MultiBWD",
 
                           #' @description
                           #' Assign all points in a matrix (offline setting).
+                          #' @param X Matrix of covariate profiles (N x D).
+                          #' @return Vector of treatment assignments.
                           assign_all = function(X) {
                             n_rows <- nrow(X)
                             assignments <- integer(n_rows)
@@ -146,6 +154,7 @@ MultiBWD <- R6::R6Class("MultiBWD",
 
                           #' @description
                           #' Update the internal state of the balancer.
+                          #' @param ... Named arguments mapping node indices to state lists.
                           update_state = function(...) {
                             args <- list(...)
                             for (node_idx in names(args)) {
@@ -173,6 +182,8 @@ MultiBWD <- R6::R6Class("MultiBWD",
 
                           #' @description
                           #' Replay assignment through the tree.
+                          #' @param x Covariate profile vector.
+                          #' @param final_assignment The treatment assignment (integer).
                           replay_assignment = function(x, final_assignment) {
                             path <- self$get_path_for_assignment(final_assignment)
                             for (step in path) {
