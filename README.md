@@ -163,8 +163,8 @@ result$assignment # This returns the assigned group!
 -   **Self-Healing:** If a user drops out mid-survey, their assignment
     remains in the history, ensuring the balance is still accounted for.
 
- You can learn more in the [Formr Integration
- Vignette](timseidel.github.io/balancr/docs/articles/).
+ You can learn more in the ([Formr Integration
+ Vignette](https://timseidel.github.io/balancr/articles/formr_integration.html)).
 
 ------------------------------------------------------------------------
 
